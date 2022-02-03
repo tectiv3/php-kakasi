@@ -1,20 +1,28 @@
-php-kakasi For PHP 7.2
+##### php-kakasi For PHP 7.2+
 
-In the case of PHP 5.6,  see https://github.com/kokukuma/php-kakasi
+Tested on PHP 8.1
 
-If you install dockerd on your computer, you can check quickly.
+#### If you install dockerd on your computer, you can check quickly.
 
+```bash
 $ git clone https://github.com/helloooideeeeea/php-kakasi.git
-
 $ cd php-kakasi
-
 $ docker build -t php -f docker/Dockerfile docker/
-
 $ docker run -it -v $(pwd):/home/ec2-user/develop/ php:latest /bin/bash
+```
 
-[ec2-user@xxxxxxx ~]$ cd develop
+#### Without docker
 
-[ec2-user@xxxxxxx develop]$ php test.php 
+- Compile extension
+```bash
+git clone https://github.com/tectiv3/php-kakasi.git && cd php-kakasi/kakasi && phpize && autoconf -f && ./configure && make && make install
+```
+- Add `extension=kakasi.so` to php.ini
+
+#### Test
+
+```
+php test.php 
 array(4) {
   ["base"]=>
   string(15) "狩野達也君"
@@ -25,15 +33,4 @@ array(4) {
   ["alph"]=>
   string(14) "kanotatsuyakun"
 }
-array(3) {
-  [0]=>
-  string(6) "狩野"
-  [1]=>
-  string(6) "達也"
-  [2]=>
-  string(3) "君"
-}
-
-How to Install
-Please check docker/Dockerfile
-Written there
+```
